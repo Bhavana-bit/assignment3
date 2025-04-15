@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>My Personal Website</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      margin: 20px;
+      background-color: #f4f4f4;
+    }
+    h1, h2 {
+      color: #333;
+    }
+    .section {
+      background: #fff;
+      padding: 20px;
+      margin-bottom: 20px;
+      border-radius: 12px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .Birthplace {
+      background: #fff;
+      padding: 20px;
+      margin-bottom: 20px;
+      border-radius: 12px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    img {
+      max-width: 100%;
+      height: auto;
+      margin: 10px 0;
+      border-radius: 10px;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+    pre {
+      background: #222;
+      color: #0f0;
+      padding: 10px;
+      border-radius: 8px;
+      overflow-x: auto;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Welcome to My Personal Website</h1>
+
+  <div class="section" id="about">
+    <h2>About Me</h2>
+    <p>
+      Hi! I'm Bhavana, a passionate student exploring the world of software systems. I love building cool things using code and enjoy learning new technologies.
+    </p>
+    <img src="images/profile.jpg" alt="Profile Picture" />
+  </div>
+   <div class="section" id="Birthplace">
+    <h2>My Birthplace</h2>
+    <img src="images/birthplace1.jpg" alt="birthplace1" style="width: 300px;"/>
+    <img src="images/birthplace2.jpg" alt="birthplace2" style="width: 300px;"/>
+   </div>
+  <div class="section" id="education">
+    <h2>Education & Achievements</h2>
+    <ul>
+      <li>Narayana High School - upto 10th grade(2022)</li>
+      <li>Narayana Junior College (2022-2024)</li>
+      <li>B.Tech in Computer Science (Ongoing), IIIT Hyderabad (2024-2028)</li>
+      <li>Achievements: secured 99.9 percentile in JEE MAIN 2024 and 1200 rank in EAPCET</li>
+    </ul>
+  </div>
+
+  <div class="section" id="skills">
+    <h2>Technical Skills</h2>
+    <ul>
+        <li>C/C++</li>
+      <li>HTML/CSS </li>
+      <li>JavaScript</li>
+      <li>Python</li>
+    </ul>
+  </div>
+
+  <div class="section" id="cv">
+    <h2>CV</h2>
+    <a href="cv.pdf" target="_blank">Click here to view my CV</a>
+  </div>
+
+  <div class="section" id="text-analysis">
+    <h2>Text Analyzer</h2>
+    <textarea id="bigText" rows="15" placeholder="Paste or type your 10,000+ words text here..."></textarea>
+    <button onclick="analyzeText()">Analyze</button>
+    <pre id="textOutput"></pre>
+  </div>
+
+  <script>
+    // Q2: Event Tracking Script
+    document.addEventListener('DOMContentLoaded', () => {
+      document.body.addEventListener('click', (e) => {
+        const timestamp = new Date().toISOString();
+        const targetType = e.target.tagName.toLowerCase();
+        const eventObject = e.target.type || targetType;
+        console.log(`${timestamp}, click, ${eventObject}`);
+      });
+
+      document.querySelectorAll('*').forEach(el => {
+        el.addEventListener('mouseover', () => {
+          const timestamp = new Date().toISOString();
+          const eventObject = el.tagName.toLowerCase();
+          console.log(`${timestamp}, view, ${eventObject}`);
+        });
+      });
+    });
+
+    // Q3: Text Analysis Script
+    function analyzeText() {
+      const text = document.getElementById('bigText').value;
+      const letters = (text.match(/[a-zA-Z]/g) || []).length;
+      const words = (text.match(/\b\w+\b/g) || []).length;
+      const spaces = (text.match(/ /g) || []).length;
+      const newlines = (text.match(/\n/g) || []).length;
+      const specialSymbols = (text.match(/[^a-zA-Z0-9\s]/g) || []).length;
+
+      const pronouns = ["i", "you", "he", "she", "it", "we", "they"];
+      const prepositions = ["in", "on", "at", "by", "with", "about", "against", "between", "into", "through"];
+      const articles = ["a", "an"];
+
+      const wordArray = text.toLowerCase().match(/\b\w+\b/g) || [];
+
+      const countOccurrences = (words, group) => {
+        const counts = {};
+        group.forEach(item => counts[item] = 0);
+        words.forEach(word => {
+          if (counts.hasOwnProperty(word)) counts[word]++;
+        });
+        return counts;
+      };
+
+      const pronounCounts = countOccurrences(wordArray, pronouns);
+      const prepositionCounts = countOccurrences(wordArray, prepositions);
+      const articleCounts = countOccurrences(wordArray, articles);
+
+      let output = `Letters: ${letters}\nWords: ${words}\nSpaces: ${spaces}\nNewlines: ${newlines}\nSpecial Symbols: ${specialSymbols}\n`;
+      output += `\nPronouns Count:\n${JSON.stringify(pronounCounts, null, 2)}`;
+      output += `\n\nPrepositions Count:\n${JSON.stringify(prepositionCounts, null, 2)}`;
+      output += `\n\nIndefinite Articles Count:\n${JSON.stringify(articleCounts, null, 2)}`;
+
+      document.getElementById('textOutput').textContent = output;
+    }
+  </script>
+    <footer style="text-align: center; margin-top: 30px; padding: 15px; background-color: #ddd; border-radius: 12px;">
+        <p>© 2025 Bhavana | Built with 💻 HTML, CSS & JavaScript</p>
+      </footer>
+    
+
+</body>
+</html>
