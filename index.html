@@ -4,91 +4,609 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>My Personal Website</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-padding-top: 100px;
+    }
+
+    :root {
+      --primary-color: #60a5fa;
+      --primary-dark: #3b82f6;
+      --primary-light: #93c5fd;
+      --neutral-bg: linear-gradient(135deg, #0f172a 0%, #1e3a8a 50%, #0f172a 100%);
+      --text-dark: #e2e8f0;
+      --text-light: #94a3b8;
+      --white: #1e293b;
+      --shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+      --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.4);
+    }
+
     body {
-      font-family: Arial, sans-serif;
+      font-family: 'Inter', sans-serif;
+      font-size: 1.5rem;
       line-height: 1.6;
-      margin: 20px;
-      background-color: #f4f4f4;
+      background: var(--neutral-bg);
+      background-attachment: fixed;
+      color: var(--text-dark);
+      scroll-behavior: smooth;
     }
+
+    /* Navigation Header */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: rgba(15, 23, 42, 0.95);
+      backdrop-filter: blur(10px);
+      box-shadow: var(--shadow);
+      z-index: 1000;
+      padding: 1rem 2rem;
+      border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+    }
+
+    header nav {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--primary-color);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 2rem;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #cbd5e1;
+      font-weight: 500;
+      font-size: 0.95rem;
+      transition: color 0.3s ease, border-bottom 0.3s ease;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid transparent;
+    }
+
+    .nav-links a:hover {
+      color: var(--primary-color);
+      border-bottom: 2px solid var(--primary-color);
+    }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+    }
+
+    .hamburger span {
+      width: 25px;
+      height: 3px;
+      background: var(--text-dark);
+      margin: 5px 0;
+      border-radius: 3px;
+      transition: 0.3s;
+    }
+
+    /* Main Content */
+    main {
+      margin-top: 80px;
+      max-width: 1200px;
+      margin-left: auto;
+      margin-right: auto;
+      padding: 0 1rem;
+    }
+
+    /* Hero Section */
+    .hero {
+      text-align: center;
+      padding: 4rem 1rem;
+      background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+      color: var(--white);
+      border-radius: 20px;
+      margin-bottom: 3rem;
+    }
+
+    .hero h1 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 4.5rem;
+      margin-bottom: 1rem;
+      font-weight: 800;
+    }
+
+    .hero p {
+      font-size: 1.5rem;
+      opacity: 0.95;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* Sections */
     h1, h2 {
-      color: #333;
+      font-family: 'Poppins', sans-serif;
+      color: var(--text-dark);
     }
+
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    h2 {
+      font-size: 3.5rem;
+      margin-bottom: 1.5rem;
+      color: var(--primary-color);
+    }
+
     .section {
-      background: #fff;
-      padding: 20px;
-      margin-bottom: 20px;
-      border-radius: 12px;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      background: transparent;
+      padding: 2rem 0;
+      margin-bottom: 2rem;
+      border-radius: 0;
+      box-shadow: none;
+      transition: none;
+      border: none;
+      backdrop-filter: none;
     }
+
+    .section:hover {
+      transform: none;
+      box-shadow: none;
+    }
+
     .Birthplace {
-      background: #fff;
-      padding: 20px;
-      margin-bottom: 20px;
-      border-radius: 12px;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      background: transparent;
+      padding: 1rem 0;
+      margin-bottom: 2rem;
+      border-radius: 0;
+      box-shadow: none;
+      transition: none;
+      border: none;
+      backdrop-filter: none;
     }
+
+    .Birthplace:hover {
+      transform: none;
+      box-shadow: none;
+    }
+
+    /* Images */
     img {
       max-width: 100%;
       height: auto;
-      margin: 10px 0;
-      border-radius: 10px;
+      margin: 1rem 0;
+      border-radius: 12px;
+      transition: transform 0.3s ease;
+      display: block;
     }
+
+    img:hover {
+      transform: scale(1.02);
+    }
+
+    /* About layout: side-by-side (image + content) */
+    .about-row {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+      justify-content: center;
+      max-width: 1000px;
+      margin: 0.5rem auto 0 auto;
+      padding: 0 1rem;
+    }
+
+    .about-image {
+      flex: 0 0 280px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .about-image img {
+      max-width: 100%;
+      border-radius: 12px;
+      box-shadow: 0 8px 30px rgba(16,24,40,0.5);
+    }
+
+    .about-content {
+      flex: 1 1 420px;
+      color: var(--text-light);
+      font-size: 1.5rem;
+      line-height: 1.7;
+    }
+
+    @media (max-width: 768px) {
+      .about-row {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .about-image {
+        flex: none;
+      }
+
+      .about-content {
+        padding-top: 0.75rem;
+      }
+    }
+
+    /* Birthplace Images - Side by Side */
+    .birthplace-images {
+      display: flex;
+      gap: 1.5rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 1.5rem;
+    }
+
+    .birthplace-images img {
+      flex: 0 1 calc(50% - 0.75rem);
+      max-width: 400px;
+    }
+
+    @media (max-width: 768px) {
+      .birthplace-images {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .birthplace-images img {
+        flex: 0 1 100%;
+      }
+    }
+
+    /* Lists */
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    ul li {
+      padding: 0.75rem 0;
+      padding-left: 1.5rem;
+      position: relative;
+      color: var(--text-light);
+      font-size: 1.3rem;
+    }
+
+    ul li:before {
+      content: "▸";
+      color: var(--primary-color);
+      font-weight: bold;
+      position: absolute;
+      left: 0;
+    }
+
+    /* Forms */
     input, textarea {
       width: 100%;
-      padding: 10px;
-      margin-top: 10px;
-      border: 1px solid #ccc;
-      border-radius: 6px;
+      padding: 0.75rem;
+      margin-top: 0.75rem;
+      border: 2px solid #e2e8f0;
+      border-radius: 8px;
+      font-family: 'Inter', sans-serif;
+      font-size: 1rem;
+      transition: border-color 0.3s ease;
     }
+
+    input:focus, textarea:focus {
+      outline: none;
+      border-color: var(--primary-color);
+    }
+
+    button {
+      background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+      color: var(--white);
+      padding: 0.75rem 1.5rem;
+      border: none;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      margin-top: 1rem;
+    }
+
+    button:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    button:active {
+      transform: translateY(0);
+    }
+
+    /* Code Output */
     pre {
-      background: #222;
-      color: #0f0;
-      padding: 10px;
+      background: var(--text-dark);
+      color: #10b981;
+      padding: 1.5rem;
       border-radius: 8px;
       overflow-x: auto;
+      margin-top: 1rem;
+      font-size: 0.9rem;
+      border: 1px solid #e2e8f0;
+    }
+
+    /* Social Links */
+    .social-links {
+      display: flex;
+      gap: 1rem;
+      margin: 1.5rem 0;
+      flex-wrap: wrap;
+    }
+
+    .social-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      background: var(--primary-light);
+      color: var(--white);
+      text-decoration: none;
+      font-size: 1.2rem;
+      transition: all 0.3s ease;
+    }
+
+    .social-link:hover {
+      background: var(--primary-color);
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    /* Projects Section */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .project-card {
+      background: transparent;
+      border-radius: 0;
+      overflow: visible;
+      box-shadow: none;
+      transition: none;
+      border-left: none;
+      border: none;
+      backdrop-filter: none;
+    }
+
+    .project-card:hover {
+      transform: none;
+      box-shadow: none;
+    }
+
+    .project-card-content {
+      padding: 1.5rem;
+    }
+
+    .project-card h3 {
+      color: var(--primary-color);
+      margin-bottom: 0.75rem;
+      font-size: 1.3rem;
+    }
+
+    .project-card p {
+      color: var(--text-light);
+      line-height: 1.6;
+    }
+
+    /* CV Link */
+    .cv-link {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+      color: var(--white);
+      padding: 0.75rem 1.5rem;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .cv-link:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      margin-top: 4rem;
+      padding: 2rem;
+      background: var(--primary-color);
+      color: var(--white);
+      border-radius: 16px;
+      margin-bottom: 2rem;
+    }
+
+    footer p {
+      margin: 0;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        background: rgba(15, 23, 42, 0.95);
+        padding: 1rem;
+        gap: 0;
+        box-shadow: var(--shadow);
+        border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .nav-links a {
+        padding: 1rem;
+        border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+        color: #cbd5e1;
+      }
+
+      .hamburger {
+        display: flex;
+      }
+
+      .hero h1 {
+        font-size: 2rem;
+      }
+
+      h2 {
+        font-size: 1.5rem;
+      }
+
+      .hero {
+        padding: 2rem 1rem;
+      }
+
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+
+      header {
+        padding: 1rem;
+      }
+
+      header nav {
+        padding: 0;
+      }
+
+      main {
+        margin-top: 70px;
+      }
+
+      .section, .Birthplace {
+        padding: 1.5rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero h1 {
+        font-size: 1.5rem;
+      }
+
+      h2 {
+        font-size: 1.3rem;
+      }
+
+      .nav-links {
+        gap: 0;
+      }
+
+      .social-links {
+        gap: 0.75rem;
+      }
+
+      .social-link {
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+      }
     }
   </style>
 </head>
 <body>
 
-  <h1>Welcome to My Personal Website</h1>
+  <!-- Navigation Header -->
+  <header>
+    <nav>
+      <a href="#" class="logo">Bhavana</a>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#education">Achievements</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <div class="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </nav>
+  </header>
 
-  <div class="section" id="about">
-    <h2>About Me</h2>
-    <p>
-      Hi! I'm Bhavana, a passionate student exploring the world of software systems. I love building cool things using code and enjoy learning new technologies.
-    </p>
-    <img src="images/profile.jpg" alt="Profile Picture" />
-  </div>
-   <div class="section" id="Birthplace">
-    <h2>My Birthplace</h2>
-    <img src="images/birthplace1.jpg" alt="birthplace1" style="width: 300px;"/>
-    <img src="images/birthplace2.jpg" alt="birthplace2" style="width: 300px;"/>
-   </div>
+  <main>
+    <!-- Hero Section -->
+    <section class="hero">
+      <h1>Welcome to My Personal Website</h1>
+      <p>A passionate student exploring software systems & building cool things with code</p>
+    </section>
+
+    <div class="section" id="about">
+      <h2>About Me</h2>
+      <div class="about-row">
+        <div class="about-image">
+          <img src="images/profile.jpg" alt="Profile Picture" style="max-width: 280px; border-radius: 12px;"/>
+        </div>
+        <div class="about-content">
+          <p>
+            Hi! I'm Bhavana, a passionate student exploring the world of software systems. I love building cool things using code and enjoy learning new technologies. Currently pursuing my B.Tech in Computer Science at IIIT Hyderabad.
+          </p>
+          <p style="margin-top:0.75rem; color: var(--text-light);">I enjoy web systems, IoT projects and competitive programming — always learning and collaborating on interesting problems.</p>
+        </div>
+      </div>
+    </div>
+    <div class="section" id="Birthplace">
+      <h2>My Birthplace</h2>
+      <p style="color: var(--text-light); margin-bottom: 1.5rem;">Visakhapatnam - A vibrant coastal city with rich maritime heritage and natural beauty</p>
+      <div class="birthplace-images">
+        <img src="images/birthplace1.jpg" alt="Birthplace landmark"/>
+        <img src="images/birthplace2.jpg" alt="Birthplace temple"/>
+      </div>
+    </div>
   <div class="section" id="education">
     <h2>Education & Achievements</h2>
     <ul>
-      <li>Narayana High School - upto 10th grade(2022)</li>
-      <li>Narayana Junior College (2022-2024)</li>
-      <li>B.Tech in Computer Science (Ongoing), IIIT Hyderabad (2024-2028)</li>
-      <li>Achievements: secured 99.9 percentile in JEE MAIN 2024 and 1200 rank in EAPCET</li>
+      <li><strong>B.Tech in Computer Science</strong> - IIIT Hyderabad (2024-2028)</li>
+      <li><strong>Narayana Junior College</strong> - Intermediate (2022-2024)</li>
+      <li><strong>Narayana High School</strong> - up to 10th grade (2022)</li>
+      <li><strong>JEE MAIN 2024:</strong> Secured 99.9 percentile</li>
+      <li><strong>AP EAPCET 2024:</strong> Ranked 1200</li>
     </ul>
   </div>
 
   <div class="section" id="skills">
     <h2>Technical Skills</h2>
     <ul>
-        <li>C/C++</li>
-      <li>HTML/CSS </li>
-      <li>JavaScript</li>
-      <li>Python</li>
+      <li><strong>Programming Languages:</strong> C/C++, Python, JavaScript</li>
+      <li><strong>Web Development:</strong> HTML, CSS, JavaScript</li>
+      <li><strong>Tools & Platforms:</strong> Git, VS Code, Arduino, Raspberry Pi</li>
+      <li><strong>Currently Learning:</strong> Web Systems, IoT, Data Structures</li>
     </ul>
   </div>
 
   <div class="section" id="cv">
-    <h2>CV</h2>
-    <a href="cv.pdf" target="_blank">Click here to view my CV</a>
+    <h2>Curriculum Vitae</h2>
+    <p style="color: var(--text-light); margin-bottom: 1rem;">Download my complete CV to learn more about my qualifications and experience.</p>
+    <a href="cv.pdf" target="_blank" class="cv-link"><i class="fas fa-download"></i> View / Download CV (PDF)</a>
   </div>
 
   <div class="section" id="text-analysis">
@@ -98,7 +616,33 @@
     <pre id="textOutput"></pre>
   </div>
 
+  <div class="section" id="contact">
+    <h2>Get In Touch</h2>
+    <p style="color: var(--text-light); margin-bottom: 1rem;">I'd love to hear from you! Feel free to reach out via email or phone.</p>
+    <ul>
+      <li><strong>Email:</strong> <a href="mailto:sirnelli.bhavana@students.iiit.ac.in" style="color: var(--primary-color); text-decoration: none;">sirnelli.bhavana@students.iiit.ac.in</a></li>
+      <li><strong>Phone:</strong> <a href="tel:+919704714288" style="color: var(--primary-color); text-decoration: none;">+91-9704714288</a></li>
+      <li><strong>Location:</strong> Visakhapatnam, India</li>
+    </ul>
+  </div>
+
   <script>
+    // Hamburger Menu Toggle
+    const hamburger = document.querySelector('.hamburger');
+    const navLinks = document.querySelector('.nav-links');
+
+    if (hamburger) {
+      hamburger.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+      });
+
+      document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', () => {
+          navLinks.classList.remove('active');
+        });
+      });
+    }
+
     // Q2: Event Tracking Script
     document.addEventListener('DOMContentLoaded', () => {
       document.body.addEventListener('click', (e) => {
@@ -153,10 +697,12 @@
       document.getElementById('textOutput').textContent = output;
     }
   </script>
-    <footer style="text-align: center; margin-top: 30px; padding: 15px; background-color: #ddd; border-radius: 12px;">
-        <p>© 2025 Bhavana | Built with 💻 HTML, CSS & JavaScript</p>
-      </footer>
-    
+
+  <footer>
+    <p>© 2025 Bhavana | Built with HTML, CSS & JavaScript</p>
+  </footer>
+
+</main>
 
 </body>
 </html>
